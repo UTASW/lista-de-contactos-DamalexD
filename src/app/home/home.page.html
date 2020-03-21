@@ -1,20 +1,89 @@
 <ion-header translucent>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Agenda de contactos pro
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item>
+    <ion-label position="floating">Nombre: </ion-label>
+    <ion-input #nombre [(ngModel)]='clnNombre'></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Teléfono: </ion-label>
+    <ion-input type="tel" #telefono [(ngModel)]='clnTelefono'></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Correo: </ion-label>
+    <ion-input #correo [(ngModel)]='clnCorreo'></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  position="floating"> Fecha de nacimiento: MM DD YY</ion-label>
+    <ion-datetime #fecha [(ngModel)]="servicio.fecha" displayFormat="DD/MMM/YYYY" placeholder="Fecha"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Notas: </ion-label>
+    <ion-input #notas [(ngModel)]='servicio.clnNotas' ></ion-input>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<div>
+    <ion-list>
+      <ion-radio-group [(ngModel)]="servicio.sexo2">
+        <ion-list-header>
+          <ion-label>
+            Sexo
+          </ion-label>
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-label>Mujer</ion-label>
+          <ion-radio #mujer name="sexo" value="Femenino"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Hombre</ion-label>
+          <ion-radio #hombre name="sexo" value="Masculino"></ion-radio>
+        </ion-item>
+    
+      </ion-radio-group>
+    </ion-list>
+</div>
+
+    <ion-button (click)="servicio.addPerson(nombre.value, telefono.value, correo.value, notas.value, fecha.value)" expand="full"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+    <div class="espacio"></div>
+
+  <app-componente></app-componente>
+  <!-- <ion-item>
+    <ion-label>Ver notas </ion-label>
+    <ion-toggle (ionChange)="servicio.showNotes($event)"></ion-toggle>
+  </ion-item>
+  
+  <div *ngIf="servicio.arrPersonas.length !== 0">
+    <ion-card *ngFor = "let item of servicio.arrPersonas" [ngClass] = "{'m' : item.sex, 'f': !item.sex}" >
+      <ion-card-header>
+
+      <ion-card-title>{{item.strNombre}}</ion-card-title>
+      <ion-card-title>{{item.intNumero}}</ion-card-title>
+      <ion-card-title>{{item.strCorreo}}</ion-card-title>
+      
+      <ion-card-content *ngIf="servicio.blnNotes == true">
+        {{item.strNotas}}
+      </ion-card-content>
+      
+      <div style="text-align: right;">
+        <ion-button (click)= "eliminar(item)">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button> 
+      </div>
+
+      </ion-card-header>
+    </ion-card>
+
   </div>
+  <div *ngIf="servicio.arrPersonas.length == 0">
+    <h3>NO HAY CON-TACOS.</h3>
+  </div> -->
+
 </ion-content>

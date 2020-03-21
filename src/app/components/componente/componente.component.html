@@ -1,0 +1,31 @@
+<ion-item>
+  <ion-label>Ver notas </ion-label>
+  <ion-toggle (ionChange)="servicio.showNotes($event)"></ion-toggle>
+</ion-item>
+
+<div *ngIf="servicio.arrPersonas.length !== 0">
+  <ion-card *ngFor = "let item of servicio.arrPersonas" [ngClass] = "{'m' : item.sex, 'f': !item.sex}" >
+    <ion-card-header>
+
+    <ion-card-title>{{item.strNombre}}</ion-card-title>
+    <ion-card-title>{{item.intNumero}}</ion-card-title>
+    <ion-card-title>{{item.strCorreo}}</ion-card-title>
+    <ion-card-subtitle>Nacido en {{item.fecha|date}}</ion-card-subtitle>
+    
+    <ion-card-content *ngIf="servicio.blnNotes == true">
+      {{item.strNotas}}
+    </ion-card-content>
+    
+    <div style="text-align: right;">
+      <ion-button (click)= "eliminar(item)">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button> 
+    </div>
+
+    </ion-card-header>
+  </ion-card>
+
+</div>
+<div *ngIf="servicio.arrPersonas.length == 0">
+  <h3>NO HAY CON-TACOS.</h3>
+</div>
